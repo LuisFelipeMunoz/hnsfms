@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>hnsfms - contacto</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-auto">
+          <a href="./index.html">
+            <img
+              src="https://s3.amazonaws.com/eventtia/event_files/29192/original/kissclipartgenericlogopngclipartlogobrandorganization4818c12f0eb475ed15847524521584752452.png?1584752452"
+              height="32"
+            />
+          </a>
+        </div>
+        <div class="col"></div>
+        <div class="col-auto">
+          <button type="button" class="btn btn-primary btn-sm">
+            Iniciar Sesion
+          </button>
+          <a href="./carro.html" class="btn btn-primary btn-sm">Carrito</a>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <nav class="navbar navbar-expand navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="./index.html"
+              >
+                Home
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Categorias
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li>
+                  <a class="dropdown-item" href="#">Vestuario Mujer</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Vestuario Hombre</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Vestuario Infantil</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Hogar</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Tecnologia</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Mascotas</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="./contacto.html"
+                tabindex="-1"
+                aria-disabled="true"
+              >
+                Contactenos
+              </a>
+            </li>
+          </ul>
+          <form id="buscarForm" class="d-flex">
+            <input
+              id="buscar"
+              size="30"
+              class="form-control me-2"
+              type="search"
+              placeholder="Buscar (minimo 3 caracteres)"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Buscar
+            </button>
+          </form>
+        </div>
+      </nav>
+    </div>
+    <section class="contacto">
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-auto h1">Contacto</div>
+        </div>
+        <div class="row align-items-center justify-content-center">
+          <div class="col-12">
+            <div class="card">
+              <form class="container my-2">
+                <div class="row align-items-center">
+                  <div class="col-auto">
+                    <label for="nombre" class="form-label">Nombre</label>
+                  </div>
+                </div>
+                <div class="row align-items-center justify-content-center">
+                  <div class="col-12">
+                    <input id="nombre" class="form-control" />
+                  </div>
+                  <div id="errorNombre" class="col-12 text-danger"></div>
+                </div>
+                <div class="row align-items-center">
+                  <div class="col-auto">
+                    <label for="correo" class="form-label">Correo</label>
+                  </div>
+                </div>
+                <div class="row align-items-center justify-content-center">
+                  <div class="col-12">
+                    <input id="correo" class="form-control" />
+                  </div>
+                  <div id="errorCorreo" class="col-12 text-danger"></div>
+                </div>
+                <div class="row align-items-center">
+                  <div class="col-auto">
+                    <label for="asunto" class="form-label">Asunto</label>
+                  </div>
+                </div>
+                <div class="row align-items-center justify-content-center">
+                  <div class="col-12">
+                    <select id="asunto" class="form-control">
+                      <option>Seleccione Asunto</option>
+                      <option>Solicitar Informacion</option>
+                      <option>Reclamo</option>
+                    </select>
+                  </div>
+                  <div id="errorAsunto" class="col-12 text-danger"></div>
+                </div>
+                <div class="row align-items-center">
+                  <div class="col-auto">
+                    <label for="mensaje" class="form-label">Mensaje</label>
+                  </div>
+                </div>
+                <div class="row align-items-center justify-content-center">
+                  <div class="col-12">
+                    <textarea id="mensaje" class="form-control"></textarea>
+                  </div>
+                  <div id="errorMensaje" class="col-12 text-danger"></div>
+                </div>
+                <div class="row align-items-center justify-content-center">
+                  <div class="d-grid gap-2 my-2">
+                    <button class="btn btn-primary" type="submit">
+                      enviar
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="footer bg-light">
+      <div class="container mt-3">
+        <div class="row align-items-center">
+          <div class="col-auto">Menu</div>
+          <div class="col-auto">
+            <a href="#">Home</a>
+          </div>
+          <div class="col-auto">
+            <a href="#">Contacto</a>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-auto">Categorias</div>
+          <div class="col-auto">
+            <a href="#">Vestuario Mujer</a>
+          </div>
+          <div class="col-auto">
+            <a href="#">Vestuario Hombre</a>
+          </div>
+          <div class="col-auto">
+            <a href="#">Vestuario Infantil</a>
+          </div>
+          <div class="col-auto">
+            <a href="#">Hogar</a>
+          </div>
+          <div class="col-auto">
+            <a href="#">Tecnologia</a>
+          </div>
+          <div class="col-auto">
+            <a href="#">Mascota</a>
+          </div>
+        </div>
+        <div class="row align-items-center justify-content-end">
+          <div class="col-auto">Copyright 2021</div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      // formulario buscar
+      let buscar = "";
+      let isBuscarValido = false;
+
+      // formulario contacto
+      let nombre = "";
+
+      let isNombreValido = false;
+      let errorNombre = [];
+
+      let correo = "";
+
+      let isCorreoValido = false;
+      let errorCorreo = [];
+
+      let asunto = "";
+
+      let isAsuntoValido = false;
+      let errorAsunto = [];
+
+      let mensaje = "";
+
+      let isMensajeValido = false;
+      let errorMensaje = [];
+
+      $(document).ready(function () {
+        // campo buscar
+        const buscarObj = $("#buscar");
+        buscarObj.on("input", () => {
+          buscar = buscarObj.val();
+          validarBuscar();
+          buscarObj.val(buscar);
+        });
+        const buscarFormObj = $("#buscarForm");
+        buscarFormObj.submit((event) => {
+          event.preventDefault();
+          if (isBuscarValido) {
+            window.location.replace("./buscar.html?buscar=" + buscar);
+          }
+        });
+        // campo nombre
+        const nombreObj = $("#nombre");
+        const nombreError = $("#errorNombre");
+        nombreObj.on("input", () => {
+          nombre = nombreObj.val();
+          validarNombre();
+          nombreObj.val(nombre);
+          nombreError.html(errorNombre[0] ?? "");
+        });
+        // campo correo
+        const correoObj = $("#correo");
+        const correoError = $("#errorCorreo");
+        correoObj.on("input", () => {
+          correo = correoObj.val();
+          validarCorreo();
+          correoObj.val(correo);
+          correoError.html(errorCorreo[0] ?? "");
+        });
+        // campo asunto
+        const asuntoObj = $("#asunto");
+        const asuntoError = $("#errorAsunto");
+        asuntoObj.on("input", () => {
+          asunto = asuntoObj.val();
+          validarAsunto();
+          asuntoObj.val(asunto);
+          asuntoError.html(errorAsunto[0] ?? "");
+        });
+        // campo mensaje
+        const mensajeObj = $("#mensaje");
+        const mensajeError = $("#errorMensaje");
+        mensajeObj.on("input", () => {
+          mensaje = mensajeObj.val();
+          validarMensaje();
+          mensajeObj.val(mensaje);
+          mensajeError.html(errorMensaje[0] ?? "");
+        });
+      });
+
+      const validarBuscar = () => {
+        const regex = RegExp("[^a-zA-Z0-9 ]", "gm");
+        const valido = buscar.replace(regex, "");
+        buscar = valido;
+        isBuscarValido = buscar.length >= 3;
+      };
+
+      const validarNombre = () => {
+        errorNombre = [];
+        const regex = RegExp("[^a-zA-Z ]", "gm");
+        const valido = nombre.replace(regex, "");
+        nombre = valido;
+        isNombreValido =
+          nombre.split(" ").filter((item) => {
+            return !!item;
+          }).length >= 3;
+        if (!isNombreValido) {
+          errorNombre.push("minimo 3 palabras");
+        }
+      };
+
+      const validarCorreo = () => {
+        errorCorreo = [];
+        const regex = RegExp("[^a-zA-Z0-9@.]", "gm");
+        const valido = correo.replace(regex, "");
+        console.log(valido);
+        correo = valido;
+        const dividido = correo.split("@").filter((item) => {
+          return !!item;
+        });
+        isCorreoValido = dividido.length == 2;
+        if (!isCorreoValido) {
+          errorCorreo.push("el correo tiene que contener @");
+          return;
+        }
+        const host = dividido[1].split(".").filter((item) => {
+          return !!item;
+        });
+        isCorreoValido = host.length == 2;
+        if (!isCorreoValido) {
+          errorCorreo.push(
+            "el correo tiene que tener un . antes de la extencion en el host"
+          );
+          return;
+        }
+        isCorreoValido = host[1].length <= 3;
+        if (!isCorreoValido) {
+          errorCorreo.push(
+            "la extencion no puede tener mas de tres caracteres"
+          );
+          return;
+        }
+      };
+
+      const validarAsunto = () => {
+        errorAsunto = [];
+        isAsuntoValido = asunto != "Seleccione Asunto";
+        if (!isAsuntoValido) {
+          errorAsunto.push("seleccione un asunto");
+        }
+      };
+
+      const validarMensaje = () => {
+        errorMensaje = [];
+        isMensajeValido =
+          mensaje.split(" ").filter((item) => {
+            return !!item;
+          }).length >= 3;
+        if (!isMensajeValido) {
+          errorMensaje.push("minimo 3 palabras");
+        }
+      };
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
