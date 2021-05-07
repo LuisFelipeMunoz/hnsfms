@@ -4,13 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
-      crossorigin="anonymous"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>hnsfms - index</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Hoy no se fía, mañana sí - carro</title>
   </head>
   <body>
     <div class="container">
@@ -18,15 +18,20 @@
         <div class="col-auto">
           <a href="./index.html">
             <img
-              src="https://s3.amazonaws.com/eventtia/event_files/29192/original/kissclipartgenericlogopngclipartlogobrandorganization4818c12f0eb475ed15847524521584752452.png?1584752452"
+              src="https://pm1.narvii.com/7009/c67ac2e265c76bac9ea52fb4764c40d534315a29r1-628-488v2_hq.jpg"
               height="32"
             />
           </a>
         </div>
         <div class="col"></div>
         <div class="col-auto">
-          <button type="button" class="btn btn-primary btn-sm">
-            Iniciar Sesion
+          <button
+            type="button"
+            data-toggle="modal"
+            data-target="#modalIniciarSesion"
+            class="btn btn-primary btn-sm"
+          >
+            Iniciar Sesión
           </button>
           <a href="./carro.html" class="btn btn-primary btn-sm">Carrito</a>
         </div>
@@ -42,50 +47,19 @@
                 aria-current="page"
                 href="./index.html"
               >
-                Home
+                Inicio
               </a>
             </li>
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
-                href="#"
                 id="navbarDropdown"
                 role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+                data-toggle="dropdown"
               >
-                Categorias
+                Categorías
               </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <a class="dropdown-item" href="./index.html#mujer">
-                    Vestuario Mujer
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="./index.html#hombre">
-                    Vestuario Hombre
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="./index.html#infantil">
-                    Vestuario Infantil
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="./index.html#hogar">Hogar</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="./index.html#tecnologia">
-                    Tecnologia
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="./index.html#mascota">
-                    Mascotas
-                  </a>
-                </li>
-              </ul>
+              <ul id="categoriasDD" class="dropdown-menu"></ul>
             </li>
             <li class="nav-item">
               <a
@@ -94,10 +68,11 @@
                 tabindex="-1"
                 aria-disabled="true"
               >
-                Contactenos
+                Contáctenos
               </a>
             </li>
           </ul>
+          <div class="col"></div>
           <form id="buscarForm" class="d-flex">
             <input
               id="buscar"
@@ -114,6 +89,7 @@
         </div>
       </nav>
     </div>
+
     <section>
       <div class="container">
         <div class="row align-items-center justify-content-center">
@@ -226,47 +202,236 @@
         </div>
       </div>
     </section>
+
+    <div class="modal fade" id="modalIniciarSesion">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Iniciar Sesion</h4>
+            <button type="button" class="close" data-dismiss="modal">×</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <form id="buscarForm" class="d-flex">
+              <div class="container">
+                <div class="row align-items-center">
+                  <div class="col-auto">
+                    <label for="user" class="form-label">Usuario</label>
+                  </div>
+                </div>
+                <div class="row align-items-center justify-content-center mb-2">
+                  <div class="col-12">
+                    <input
+                      id="user"
+                      placeholder="Usuario"
+                      class="form-control"
+                    />
+                  </div>
+                  <div id="errorUser" class="col-12 text-danger"></div>
+                </div>
+                <div class="row align-items-center">
+                  <div class="col-auto">
+                    <label for="password" class="form-label">
+                      Contraseña
+                    </label>
+                  </div>
+                </div>
+                <div class="row align-items-center justify-content-center">
+                  <div class="col-12">
+                    <input
+                      id="password"
+                      placeholder="Contraseña"
+                      type="password"
+                      class="form-control"
+                    />
+                  </div>
+                  <div id="errorPassword" class="col-12 text-danger"></div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-success"
+              data-dismiss="modal"
+              onclick="okIniciarSesion()"
+            >
+              Ingresar
+            </button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+              Volver
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <footer class="footer bg-light">
       <div class="container mt-3">
         <div class="row align-items-center">
-          <div class="col-auto">Menu</div>
+          <div class="col-auto">Menú</div>
           <div class="col-auto">
-            <a href="./index.html">Home</a>
+            <a href="./index.html">Inicio</a>
           </div>
           <div class="col-auto">
             <a href="./contacto.html">Contacto</a>
           </div>
         </div>
-        <div class="row align-items-center">
-          <div class="col-auto">Categorias</div>
-          <div class="col-auto">
-            <a href="./index.html#mujer">Vestuario Mujer</a>
-          </div>
-          <div class="col-auto">
-            <a href="./index.html#hombre">Vestuario Hombre</a>
-          </div>
-          <div class="col-auto">
-            <a href="./index.html#infantil">Vestuario Infantil</a>
-          </div>
-          <div class="col-auto">
-            <a href="./index.html#hogar">Hogar</a>
-          </div>
-          <div class="col-auto">
-            <a href="./index.html#tecnologia">Tecnologia</a>
-          </div>
-          <div class="col-auto">
-            <a href="./index.html#mascota">Mascota</a>
-          </div>
-        </div>
+        <div id="categoriasFT" class="row align-items-center"></div>
         <div class="row align-items-center justify-content-end">
-          <div class="col-auto">Copyright 2021</div>
+          <div class="col-auto">Talca, Chile Copyright 2021</div>
         </div>
       </div>
     </footer>
+
     <script>
+      const categorias = [
+        { id: "vestuario mujer", texto: "Vestuario Mujer" },
+        { id: "vestuario hombre", texto: "Vestuario Hombre" },
+        { id: "vestuario infantil", texto: "Vestuario Infantil" },
+        { id: "tecnologia", texto: "Tecnologia" },
+        { id: "hogar", texto: "Hogar" },
+        { id: "mascotas", texto: "Mascotas" },
+      ];
+
+      const productos = {
+        "01": {
+          id: "01",
+          nombre: "producto 01",
+          precio: 1000,
+          categoria: "vestuario mujer",
+          marca: "mujer",
+          talla: "s",
+          descripcion: "vestuario mujer",
+          stock: 99,
+        },
+        "02": {
+          id: "02",
+          nombre: "producto 02",
+          precio: 2000,
+          categoria: "vestuario mujer",
+          marca: "mujer",
+          talla: "s",
+          descripcion: "vestuario mujer",
+          stock: 98,
+        },
+        "03": {
+          id: "03",
+          nombre: "producto 03",
+          precio: 3000,
+          categoria: "vestuario mujer",
+          marca: "mujer",
+          talla: "s",
+          descripcion: "vestuario mujer",
+          stock: 97,
+        },
+        "04": {
+          id: "04",
+          nombre: "producto 04",
+          precio: 4000,
+          categoria: "vestuario mujer",
+          marca: "mujer",
+          talla: "s",
+          descripcion: "vestuario mujer",
+          stock: 96,
+        },
+        "05": {
+          id: "05",
+          nombre: "producto 05",
+          precio: 5000,
+          categoria: "vestuario hombre",
+          marca: "hombre",
+          talla: "l",
+          descripcion: "vestuario hombre",
+          stock: 95,
+        },
+        "06": {
+          id: "06",
+          nombre: "producto 06",
+          precio: 6000,
+          categoria: "vestuario hombre",
+          marca: "hombre",
+          talla: "l",
+          descripcion: "vestuario hombre",
+          stock: 94,
+        },
+        "07": {
+          id: "07",
+          nombre: "producto 07",
+          precio: 7000,
+          categoria: "vestuario hombre",
+          marca: "hombre",
+          talla: "l",
+          descripcion: "vestuario hombre",
+          stock: 93,
+        },
+        "08": {
+          id: "08",
+          nombre: "producto 08",
+          precio: 8000,
+          categoria: "vestuario infantil",
+          marca: "infantil",
+          talla: "12",
+          descripcion: "vestuario infantil",
+          stock: 92,
+        },
+        "09": {
+          id: "09",
+          nombre: "producto 09",
+          precio: 9000,
+          categoria: "vestuario infantil",
+          marca: "infantil",
+          talla: "12",
+          descripcion: "vestuario infantil",
+          stock: 91,
+        },
+        10: {
+          id: "10",
+          nombre: "producto 10",
+          precio: 10000,
+          categoria: "tecnologia",
+          marca: "tecnologia",
+          descripcion: "tecnologia",
+          stock: 90,
+        },
+        11: {
+          id: "11",
+          nombre: "producto 11",
+          precio: 11000,
+          categoria: "hogar",
+          marca: "hogar",
+          descripcion: "hogar",
+          stock: 91,
+        },
+        12: {
+          id: "12",
+          nombre: "producto 12",
+          precio: 12000,
+          categoria: "mascotas",
+          marca: "mascotas",
+          descripcion: "mascotas",
+          stock: 91,
+        },
+      };
+
       // formulario buscar
       let buscar = "";
       let isBuscarValido = false;
+
+      // formulario iniciar sesion
+      let user = "";
+
+      let isUserValido = false;
+      let errorUser = [];
+
+      let password = "";
+
+      let isPasswordValido = false;
+      let errorPassword = [];
 
       $(document).ready(function () {
         // campo buscar
@@ -283,6 +448,45 @@
             window.location.replace("./buscar.html?buscar=" + buscar);
           }
         });
+
+        // campo usuario
+        const userObj = $("#user");
+        const userError = $("#errorUser");
+        userObj.on("input", () => {
+          user = userObj.val();
+          validarUser();
+          userObj.val(user);
+          userError.html(errorUser[0] ?? "");
+        });
+        // campo contraseña
+        const passwordObj = $("#password");
+        const passwordError = $("#errorPassword");
+        passwordObj.on("input", () => {
+          password = passwordObj.val();
+          validarPassword();
+          passwordObj.val(password);
+          passwordError.html(errorPassword[0] ?? "");
+        });
+
+        // carga categoriasDD
+        const categoriasDDObj = $("#categoriasDD");
+        let contenidoCategoriaDD = "";
+        categorias.forEach((categoria) => {
+          contenidoCategoriaDD += `<li>
+            <a class="dropdown-item" href="./index.html#${categoria.id}">${categoria.texto}</a>
+          </li>`;
+        });
+        categoriasDDObj.html(contenidoCategoriaDD);
+
+        // carga categoriasFT
+        const categoriasFTObj = $("#categoriasFT");
+        let contenidoCategoriaFT = `<div class="col-auto">Categorías</div>`;
+        categorias.forEach((categoria) => {
+          contenidoCategoriaFT += `<div class="col-auto">
+            <a href="./index.html#${categoria.id}">${categoria.texto}</a>
+          </div>`;
+        });
+        categoriasFTObj.html(contenidoCategoriaFT);
       });
 
       const validarBuscar = () => {
@@ -291,11 +495,40 @@
         buscar = valido;
         isBuscarValido = buscar.length >= 3;
       };
+
+      const validarUser = () => {
+        errorUser = [];
+        const regex = RegExp("[^a-zA-Z0-9]", "gm");
+        const valido = user.replace(regex, "");
+        user = valido;
+        isUserValido = !!user;
+        if (!isUserValido) {
+          errorUser.push("el campo no puede estar vacio");
+        }
+        isUserValido = user.length > 3;
+        if (!isUserValido) {
+          errorUser.push("el campo tiene que tener mas de 3 caracteres");
+        }
+      };
+
+      const validarPassword = () => {
+        errorPassword = [];
+        isPasswordValido = !!password;
+        if (!isPasswordValido) {
+          errorPassword.push("el campo no puede estar vacio");
+        }
+        isPasswordValido = password.length >= 6;
+        if (!isPasswordValido) {
+          errorPassword.push("el campo tiene que tener minimo 6 caracteres");
+        }
+      };
+
+      const okIniciarSesion = () => {
+        if (!isUserValido || !isPasswordValido) {
+          alert("Llene Correctamente el Formulario");
+          return;
+        }
+      };
     </script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-      crossorigin="anonymous"
-    ></script>
   </body>
 </html>
