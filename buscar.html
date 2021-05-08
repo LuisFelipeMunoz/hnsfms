@@ -36,9 +36,7 @@
           <a href="./carro.html" class="btn btn-primary btn-sm">Carrito</a>
         </div>
       </div>
-    </div>
-    <div class="container">
-      <nav class="navbar navbar-expand navbar-light bg-light">
+      <nav class="navbar navbar-expand navbar-light bg-light px-0">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
@@ -343,9 +341,7 @@
         const buscarFormObj = $("#buscarForm");
         buscarFormObj.submit((event) => {
           event.preventDefault();
-          if (isBuscarValido) {
-            window.location.replace("./buscar.html?buscar=" + buscar);
-          }
+          okBuscar();
         });
 
         // campo usuario
@@ -545,6 +541,14 @@
           alert("Llene Correctamente el Formulario");
           return;
         }
+      };
+
+      const okBuscar = () => {
+        if (!isBuscarValido) {
+          alert("Minimo 3 caracteres para buscar");
+          return;
+        }
+        window.location.replace("./buscar.html?buscar=" + buscar);
       };
     </script>
   </body>

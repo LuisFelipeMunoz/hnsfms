@@ -36,9 +36,7 @@
           <a href="./carro.html" class="btn btn-primary btn-sm">Carrito</a>
         </div>
       </div>
-    </div>
-    <div class="container">
-      <nav class="navbar navbar-expand navbar-light bg-light">
+      <nav class="navbar navbar-expand navbar-light bg-light px-0">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
@@ -98,7 +96,7 @@
         <div class="row align-items-center justify-content-center">
           <div class="col-12">
             <div class="card">
-              <form class="container my-2">
+              <form id="contactoForm" class="container my-2">
                 <div class="row align-items-center">
                   <div class="col-auto">
                     <label for="nombre" class="form-label">Nombre</label>
@@ -392,21 +390,29 @@
       let errorPassword = [];
 
       // formulario contacto
+      let nombreObj = null;
+      let nombreError = null;
       let nombre = "";
 
       let isNombreValido = false;
       let errorNombre = [];
 
+      let correoObj = null;
+      let correoError = null;
       let correo = "";
 
       let isCorreoValido = false;
       let errorCorreo = [];
 
+      let asuntoObj = null;
+      let asuntoError = null;
       let asunto = "";
 
       let isAsuntoValido = false;
       let errorAsunto = [];
 
+      let mensajeObj = null;
+      let mensajeError = null;
       let mensaje = "";
 
       let isMensajeValido = false;
@@ -423,9 +429,7 @@
         const buscarFormObj = $("#buscarForm");
         buscarFormObj.submit((event) => {
           event.preventDefault();
-          if (isBuscarValido) {
-            window.location.replace("./buscar.html?buscar=" + buscar);
-          }
+          okBuscar();
         });
 
         // campo usuario
@@ -468,42 +472,56 @@
         categoriasFTObj.html(contenidoCategoriaFT);
 
         // campo nombre
-        const nombreObj = $("#nombre");
-        const nombreError = $("#errorNombre");
-        nombreObj.on("input", () => {
-          nombre = nombreObj.val();
-          validarNombre();
-          nombreObj.val(nombre);
-          nombreError.html(errorNombre[0] ?? "");
-        });
+        nombreObj = $("#nombre");
+        nombreError = $("#errorNombre");
+        nombreObj.on("input", inputNombre);
         // campo correo
-        const correoObj = $("#correo");
-        const correoError = $("#errorCorreo");
-        correoObj.on("input", () => {
-          correo = correoObj.val();
-          validarCorreo();
-          correoObj.val(correo);
-          correoError.html(errorCorreo[0] ?? "");
-        });
+        correoObj = $("#correo");
+        correoError = $("#errorCorreo");
+        correoObj.on("input", inputCorreo);
         // campo asunto
-        const asuntoObj = $("#asunto");
-        const asuntoError = $("#errorAsunto");
-        asuntoObj.on("input", () => {
-          asunto = asuntoObj.val();
-          validarAsunto();
-          asuntoObj.val(asunto);
-          asuntoError.html(errorAsunto[0] ?? "");
-        });
+        asuntoObj = $("#asunto");
+        asuntoError = $("#errorAsunto");
+        asuntoObj.on("input", inputAsunto);
         // campo mensaje
-        const mensajeObj = $("#mensaje");
-        const mensajeError = $("#errorMensaje");
-        mensajeObj.on("input", () => {
-          mensaje = mensajeObj.val();
-          validarMensaje();
-          mensajeObj.val(mensaje);
-          mensajeError.html(errorMensaje[0] ?? "");
+        mensajeObj = $("#mensaje");
+        mensajeError = $("#errorMensaje");
+        mensajeObj.on("input", inputMensaje);
+
+        const contactoFormObj = $("#contactoForm");
+        contactoFormObj.submit((event) => {
+          event.preventDefault();
+          okContacto();
         });
       });
+
+      const inputNombre = () => {
+        nombre = nombreObj.val();
+        validarNombre();
+        nombreObj.val(nombre);
+        nombreError.html(errorNombre[0] ?? "");
+      };
+
+      const inputCorreo = () => {
+        correo = correoObj.val();
+        validarCorreo();
+        correoObj.val(correo);
+        correoError.html(errorCorreo[0] ?? "");
+      };
+
+      const inputAsunto = () => {
+        asunto = asuntoObj.val();
+        validarAsunto();
+        asuntoObj.val(asunto);
+        asuntoError.html(errorAsunto[0] ?? "");
+      };
+
+      const inputMensaje = () => {
+        mensaje = mensajeObj.val();
+        validarMensaje();
+        mensajeObj.val(mensaje);
+        mensajeError.html(errorMensaje[0] ?? "");
+      };
 
       const validarBuscar = () => {
         const regex = RegExp("[^a-zA-Z0-9 ]", "gm");
@@ -562,7 +580,12 @@
         const dividido = correo.split("@").filter((item) => {
           return !!item;
         });
-        isCorreoValido = dividido.length == 2;
+        isCorreoValido = !dividido.length === 0;
+        if (!isCorreoValido) {
+          errorCorreo.push("el campo no puede estar vacio");
+          return;
+        }
+        isCorreoValido = dividido.length === 2;
         if (!isCorreoValido) {
           errorCorreo.push("el correo tiene que contener @");
           return;
@@ -611,6 +634,30 @@
 
       const okIniciarSesion = () => {
         if (!isUserValido || !isPasswordValido) {
+          alert("Llene Correctamente el Formulario");
+          return;
+        }
+      };
+
+      const okBuscar = () => {
+        if (!isBuscarValido) {
+          alert("Minimo 3 caracteres para buscar");
+          return;
+        }
+        window.location.replace("./buscar.html?buscar=" + buscar);
+      };
+
+      const okContacto = () => {
+        inputNombre();
+        inputCorreo();
+        inputAsunto();
+        inputMensaje();
+        if (
+          !isNombreValido ||
+          !isCorreoValido ||
+          !isAsuntoValido ||
+          !isMensajeValido
+        ) {
           alert("Llene Correctamente el Formulario");
           return;
         }
